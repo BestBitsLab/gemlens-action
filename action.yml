@@ -1,0 +1,24 @@
+name: GemLens
+description: Analyze the history of your Gemfile and surface dependency insights
+author: BestBitsLab
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: "3.3"
+
+    - name: Install GemLens
+      run: gem install gemlens
+      shell: bash
+
+    - name: Run GemLens
+      run: gemlens
+      shell: bash
